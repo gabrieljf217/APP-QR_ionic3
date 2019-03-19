@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+
+//plugins
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+//servicios
+import { HistorialService } from '../providers/historial/historial';
 
 import { MyApp } from './app.component';
 import { HomePage,
@@ -37,7 +41,9 @@ import { HomePage,
     StatusBar,
     SplashScreen,
     BarcodeScanner,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    HistorialService,
+    InAppBrowser
   ]
 })
 export class AppModule {}
