@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Contacts } from '@ionic-native/contacts';
 
 //servicios
 import { HistorialService } from '../providers/historial/historial';
@@ -43,7 +44,8 @@ import { HomePage,
     BarcodeScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HistorialService,
-    InAppBrowser
+    InAppBrowser,
+    Contacts
   ]
 })
 export class AppModule {}
