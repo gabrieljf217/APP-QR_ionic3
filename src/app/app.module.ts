@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Contacts } from '@ionic-native/contacts';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 //servicios
 import { HistorialService } from '../providers/historial/historial';
@@ -45,7 +46,8 @@ import { HomePage,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HistorialService,
     InAppBrowser,
-    Contacts
+    Contacts,
+    EmailComposer
   ]
 })
 export class AppModule {}

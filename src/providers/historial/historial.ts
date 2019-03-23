@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ScanData } from "../../Models/scan-data.model";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
-
+import { EmailComposer } from '@ionic-native/email-composer';
 import { Platform, ToastController } from "ionic-angular";
 
 @Injectable()
@@ -13,7 +13,8 @@ export class HistorialService {
   constructor( private iab: InAppBrowser,
               private contacts: Contacts,
               private platform:Platform,
-              private toastCtrl:ToastController ) {
+              private toastCtrl:ToastController,
+              private emailComposer: EmailComposer ) {
     
   }
 
@@ -33,6 +34,9 @@ export class HistorialService {
       break
       case "contacto":
         this.crearContacto(scanData.info);
+      break
+      case "email":
+        this.crearMail(scanData.info);
       break
 
       default:
@@ -115,5 +119,46 @@ export class HistorialService {
     });
     return fields;
   };
+
+  private crearMail( texto:string ){
+    this.emailComposer.isAvailable().then((available: boolean) =>{
+      let camposParaMail : any = this.parse_correo(texto);
+      console.log("campo mail: " + camposParaMail[0]);
+      console.log("campo sub: " + camposParaMail[1]);
+      console.log("campo body: " + camposParaMail[2]);
+      let email = {
+        to: camposParaMail[0],
+        cc: '',
+        bcc: ['', ''],
+        attachments: [
+          '',
+          '',
+          '',
+          ''
+        ],
+        subject: camposParaMail[1],
+        body: camposParaMail[2],
+        isHtml: true
+      };
+      // Send a text message using default options
+      this.emailComposer.open(email);
+    }).catch((error : any) =>
+        {
+          console.log('User does not appear to have device e-mail account');
+          console.dir(error);
+        });
+    }
+
+  private parse_correo( input:string ) {
+    var fields = {};
+    var input1 = input.slice(7); 
+    var remuevoTo = input1.split("TO:");
+    var soloMail = remuevoTo[1].split(";SUB:");
+    fields[0] = soloMail[0];
+    var remuevoBody = soloMail[1].split(";BODY:");
+    fields[1] = remuevoBody[0];
+    fields[2]= remuevoBody[1];
+    return fields;
+  }
 
 }

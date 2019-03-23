@@ -5,6 +5,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { ToastController, Platform } from 'ionic-angular';
 //servicios
 import { HistorialService } from "../../providers/historial/historial";
+import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
+
 
 @Component({
   selector: 'page-home',
@@ -16,7 +18,7 @@ export class HomePage {
               private toastCtrl: ToastController,
               private platform:Platform,
               private _historialService:HistorialService,
-              ) {
+              private contacts: Contacts) {
 
   }
 
