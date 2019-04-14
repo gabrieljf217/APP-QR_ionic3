@@ -10,5 +10,5 @@
  - Save a history of all scans performed
  - Reading a VCARD
 
-![alt text](https://github.com/gabrieljf217/APP-QR_ionic3/blob/master/src/assets/imgs/QR.png)
+![alt text](https://github.com/gabrieljf217/APP-QR_ionic3/blob/master/src/assets/imgs/QRapp.png)
 
