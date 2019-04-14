@@ -3,7 +3,8 @@ import { ScanData } from "../../Models/scan-data.model";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
 import { EmailComposer } from '@ionic-native/email-composer';
-import { Platform, ToastController } from "ionic-angular";
+import { Platform, ToastController, ModalController } from 'ionic-angular';
+import { MapaPage } from '../../pages/mapa/mapa';
 
 @Injectable()
 export class HistorialService {
@@ -14,7 +15,8 @@ export class HistorialService {
               private contacts: Contacts,
               private platform:Platform,
               private toastCtrl:ToastController,
-              private emailComposer: EmailComposer ) {
+              private emailComposer: EmailComposer,
+              private modalCtrl:ModalController) {
     
   }
 
@@ -31,6 +33,10 @@ export class HistorialService {
     switch ( scanData.tipo ){
       case "http":
         this.iab.create( scanData.info, "_system");
+      break
+      case "mapa":
+        this.modalCtrl.create( MapaPage, { coords: scanData.info } )
+          .present();
       break
       case "contacto":
         this.crearContacto(scanData.info);

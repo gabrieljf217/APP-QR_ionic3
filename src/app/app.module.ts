@@ -18,6 +18,8 @@ import { HomePage,
         GuardadosPage,
         TabsPage,
         MapaPage } from "../pages/index.paginas";
+//mapas
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,10 @@ import { HomePage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAT8AYn0rSdW8faOs6uR5EhNsxrIOk1I7A'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
